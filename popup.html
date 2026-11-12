@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Puzzle League</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="styles.css">
+<style>
+  body { width: 400px; min-height: 260px; }
+  header { padding: 14px 16px 10px; display: flex; align-items: center; justify-content: space-between; }
+  .icon-btn { border: 1px solid var(--line); background: var(--surface); border-radius: 9px; padding: 6px 10px; cursor: pointer; font-size: 12.5px; font-weight: 500; color: var(--ink); }
+  .icon-btn:hover { background: var(--surface-2); }
+  .bar { padding: 0 16px 10px; display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+  #list { padding: 0 12px 6px; display: grid; gap: 8px; }
+  .game { cursor: pointer; }
+  .game[aria-expanded="false"] table.board { display: none; }
+  footer { padding: 8px 16px 14px; display: flex; justify-content: space-between; color: var(--muted); font-size: 12px; }
+  .empty { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 18px; }
+  .empty h2 { font: 650 16px/1.25 var(--display); margin: 0 0 6px; }
+  .empty p { margin: 0 0 6px; color: var(--muted); }
+</style>
+</head>
+<body>
+<header>
+  <div class="brand">
+    <svg class="brand-mark" viewBox="0 0 26 26" aria-hidden="true"><rect width="26" height="26" rx="7" fill="#1F5FD6"/><path d="M5 15.5h16" stroke="#9FBDF5" stroke-width="2" stroke-linecap="round"/><circle cx="9" cy="15.5" r="2.6" fill="#fff"/><circle cx="16.5" cy="15.5" r="2" fill="#F2B84B"/><path d="M6 9.5h5" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
+    <span class="brand-name">Puzzle League</span>
+  </div>
+  <button class="icon-btn" id="open">Open full view</button>
+</header>
+<div class="bar">
+  <div class="seg" role="group" aria-label="Which results">
+    <button id="seg-final" aria-pressed="true">Final</button>
+    <button id="seg-today" aria-pressed="false">Today so far</button>
+  </div>
+  <span class="muted small" id="daylabel"></span>
+</div>
+<main id="list"></main>
+<footer><span id="reset"></span><button class="linkish" id="friends">Choose friends</button></footer>
+<script src="shared.js"></script>
+<script src="ui.js"></script>
+<script src="popup.js"></script>
+</body>
+</html>

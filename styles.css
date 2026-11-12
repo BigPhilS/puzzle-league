@@ -1,0 +1,123 @@
+:root {
+  --bg: #EDF0F5;
+  --surface: #FFFFFF;
+  --surface-2: #F6F8FB;
+  --ink: #172033;
+  --muted: #5B6680;
+  --faint: #8C96AB;
+  --line: #DCE1EA;
+  --you: #1F5FD6;
+  --you-soft: #E4ECFC;
+  --gold: #C9971A;
+  --silver: #8592A6;
+  --bronze: #B06E3C;
+  --tick: #C3CAD6;
+  --display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0E1420;
+    --surface: #171F2E;
+    --surface-2: #1D2638;
+    --ink: #E7EBF3;
+    --muted: #9BA6BB;
+    --faint: #6E7990;
+    --line: #2A3448;
+    --you: #6F9EFF;
+    --you-soft: #1F2E4F;
+    --gold: #E2B53F;
+    --silver: #A9B4C6;
+    --bronze: #D08A55;
+    --tick: #3A465D;
+    color-scheme: dark;
+  }
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font: 400 14px/1.45 var(--body);
+  font-variant-numeric: tabular-nums;
+  -webkit-font-smoothing: antialiased;
+}
+button { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--you); outline-offset: 2px; border-radius: 6px; }
+
+/* ---- Brand --------------------------------------------------------------- */
+.brand { display: flex; align-items: center; gap: 10px; }
+.brand-mark { width: 26px; height: 26px; flex: none; }
+.brand-name { font: 700 19px/1 var(--display); letter-spacing: -0.02em; }
+
+/* ---- Segmented control --------------------------------------------------- */
+.seg { display: inline-flex; background: var(--surface-2); border: 1px solid var(--line); border-radius: 999px; padding: 3px; gap: 2px; }
+.seg button {
+  border: 0; background: transparent; padding: 6px 12px; border-radius: 999px; cursor: pointer;
+  color: var(--muted); font-weight: 500; font-size: 13px; white-space: nowrap;
+}
+.seg button[aria-pressed="true"] { background: var(--surface); color: var(--ink); box-shadow: 0 1px 2px rgba(23,32,51,.12); }
+
+/* ---- Game cards ---------------------------------------------------------- */
+.game {
+  background: var(--surface);
+  border-radius: 14px;
+  padding: 14px 16px 12px;
+  border: 1px solid var(--line);
+}
+.game-head { display: grid; grid-template-columns: 40px 1fr auto; gap: 12px; align-items: center; }
+.game-icon { width: 40px; height: 40px; border-radius: 10px; display: grid; place-items: center; overflow: hidden; }
+.game-icon img { width: 40px; height: 40px; display: block; }
+.game-icon.fallback, .game-icon .fb-letter { font: 700 18px/1 var(--display); color: #fff; }
+.game-icon .fb-letter { width: 40px; height: 40px; display: grid; place-items: center; }
+.game-name { font: 650 16px/1.2 var(--display); letter-spacing: -0.01em; }
+.game-sub { color: var(--muted); font-size: 12.5px; margin-top: 2px; }
+.place { text-align: right; }
+.place-num { font: 750 30px/1 var(--display); letter-spacing: -0.03em; }
+.place-num sup { font-size: 0.45em; font-weight: 650; margin-left: 1px; vertical-align: 0.95em; }
+.place-num.p1 { color: var(--gold); } .place-num.p2 { color: var(--silver); } .place-num.p3 { color: var(--bronze); }
+.place-num.none { color: var(--faint); font-size: 22px; }
+.place-label { font-size: 11.5px; color: var(--muted); margin-top: 3px; }
+
+/* ---- The track: the whole field, fastest on the left --------------------- */
+.track { position: relative; height: 40px; margin: 12px 4px 2px; }
+.track-line { position: absolute; left: 0; right: 0; top: 19px; height: 2px; background: var(--line); border-radius: 2px; }
+.track-tick { position: absolute; top: 14px; width: 2px; height: 12px; margin-left: -1px; background: var(--tick); border-radius: 1px; }
+.track-dot {
+  position: absolute; width: 20px; height: 20px; margin-left: -10px; border-radius: 50%;
+  display: grid; place-items: center; color: #fff; font: 700 9px/1 var(--body); letter-spacing: 0.02em;
+  border: 2px solid var(--surface); cursor: default;
+}
+.track-dot.lane0 { top: 10px; } .track-dot.lane1 { top: -9px; } .track-dot.lane2 { top: 26px; }
+.track-you {
+  position: absolute; top: 6px; width: 28px; height: 28px; margin-left: -14px; border-radius: 50%;
+  background: var(--you); color: #fff; display: grid; place-items: center;
+  font: 700 9.5px/1 var(--body); border: 3px solid var(--surface); box-shadow: 0 0 0 2px var(--you); z-index: 2;
+}
+.track-ends { display: flex; justify-content: space-between; color: var(--faint); font-size: 11px; margin: 0 2px; }
+
+/* ---- Tables -------------------------------------------------------------- */
+table.board { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 13px; }
+table.board td { padding: 6px 4px; border-top: 1px solid var(--line); vertical-align: middle; }
+table.board td.pos { width: 34px; color: var(--muted); font-weight: 600; }
+table.board td.time { text-align: right; width: 56px; font-weight: 500; }
+table.board td.note { color: var(--faint); font-size: 12px; text-align: right; white-space: nowrap; }
+table.board tr.me td { background: var(--you-soft); }
+table.board tr.me td:first-child { border-radius: 8px 0 0 8px; }
+table.board tr.me td:last-child { border-radius: 0 8px 8px 0; }
+table.board tr.dnf td { color: var(--faint); }
+.who { display: flex; align-items: center; gap: 8px; min-width: 0; }
+.who span.n { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.chip-dot { width: 10px; height: 10px; border-radius: 50%; flex: none; }
+
+.muted { color: var(--muted); }
+.small { font-size: 12px; }
+.linkish { background: none; border: 0; padding: 0; color: var(--you); cursor: pointer; font-weight: 500; }
+.linkish:hover { text-decoration: underline; }
+.note-partial { font-size: 11.5px; color: var(--faint); margin-top: 6px; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .reveal { animation: rise .35s ease-out both; }
+  @keyframes rise { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+}

@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Puzzle League</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+<div class="shell">
+  <header class="top">
+    <div class="brand">
+      <svg class="brand-mark" viewBox="0 0 26 26" aria-hidden="true"><rect width="26" height="26" rx="7" fill="#1F5FD6"/><path d="M5 15.5h16" stroke="#9FBDF5" stroke-width="2" stroke-linecap="round"/><circle cx="9" cy="15.5" r="2.6" fill="#fff"/><circle cx="16.5" cy="15.5" r="2" fill="#F2B84B"/><path d="M6 9.5h5" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
+      <span class="brand-name">Puzzle League</span>
+    </div>
+    <nav class="seg" aria-label="Sections">
+      <button data-view="day">Results</button>
+      <button data-view="league">League</button>
+      <button data-view="settings">Friends &amp; settings</button>
+    </nav>
+  </header>
+
+  <section id="view-day" hidden>
+    <div class="dayhead">
+      <button class="nav-btn" id="prev" aria-label="Previous puzzle day">‹</button>
+      <div>
+        <h1 id="dayTitle"></h1>
+        <div class="muted" id="dayStatus"></div>
+      </div>
+      <button class="nav-btn" id="next" aria-label="Next puzzle day">›</button>
+    </div>
+    <div class="grid" id="dayGrid"></div>
+  </section>
+
+  <section id="view-league" hidden>
+    <div class="league-controls">
+      <div class="seg" id="period">
+        <button data-p="7">Last 7 days</button>
+        <button data-p="30">Last 30 days</button>
+        <button data-p="all">All time</button>
+      </div>
+      <div class="game-chips" id="gameChips"></div>
+    </div>
+    <div class="panel">
+      <table class="league" id="leagueTable"></table>
+      <p class="muted small" id="leagueNote"></p>
+    </div>
+  </section>
+
+  <section id="view-settings" hidden>
+    <div class="settings-grid">
+      <div class="panel">
+        <h2>Your friends</h2>
+        <p class="muted">Pick up to 10 people from your leaderboards. They’ll show on every game’s track and in the league table.</p>
+        <div class="chips" id="chosen"></div>
+        <input type="search" id="search" placeholder="Search names" autocomplete="off">
+        <div class="people" id="people"></div>
+      </div>
+      <div class="side">
+        <div class="panel">
+          <h2>Saving results</h2>
+          <p class="muted">When you open a game’s leaderboard after playing, yesterday’s final standings are saved automatically.</p>
+          <label class="toggle"><input type="checkbox" id="backstop"> <span>Fill gaps automatically</span></label>
+          <p class="muted small">If a day was missed, Puzzle League briefly opens that game’s leaderboard in a background tab and closes it again. It only does this after you’ve played today’s puzzle, or on Saturday’s puzzle day, so it never starts a puzzle timer for you.</p>
+        </div>
+        <div class="panel">
+          <h2>Your data</h2>
+          <p class="muted">Everything is stored in this browser only.</p>
+          <div class="btn-row">
+            <button class="btn" id="export">Export backup</button>
+            <label class="btn">Import backup<input type="file" id="import" accept="application/json" hidden></label>
+            <button class="btn danger" id="wipe">Delete all data</button>
+          </div>
+          <p class="muted small" id="dataStatus"></p>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+<script src="shared.js"></script>
+<script src="ui.js"></script>
+<script src="dashboard.js"></script>
+</body>
+</html>
